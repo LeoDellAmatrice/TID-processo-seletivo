@@ -49,14 +49,14 @@ def post_produto(dados: dict[str, Any]) -> None:
         """, (dados['nome'], dados['tipo'], dados['quantidade'], dados['preco']))
     return None
 
-def put_produto(dados: dict[str, Any]) -> None:
+def put_produto(produto_id, dados: dict[str, Any]) -> None:
     with Cursor() as cursor:
         cursor.execute("""
             UPDATE produtos SET 
                 nome = %s, tipo_id = %s, 
                 quantidade = %s, preco = %s
             WHERE id = %s;
-        """, (dados['nome'], dados['tipo'], dados['quantidade'], dados['preco'], dados['id']))
+        """, (dados['nome'], dados['tipo'], dados['quantidade'], dados['preco'], produto_id))
     return None
 
 def delete_produto(produto_id: int) -> None:

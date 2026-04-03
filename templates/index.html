@@ -38,7 +38,9 @@
                     </td>
                 <td>
                     <a class="btn-acao btn-editar" href="/editar/{{ produto.id }}">Editar</a>
-                    <a class="btn-acao btn-excluir" href="/deletar/{{ produto.id }}">Excluir</a>
+                    <form action="/deletar/{{ produto.id }}" method="POST" style="display:inline;">
+                        <button onclick="return confirm('Tem certeza?')">Excluir</button>
+                    </form>
                 </td>
                 </tr>
             {% endfor %}
