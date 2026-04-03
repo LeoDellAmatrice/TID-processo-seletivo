@@ -17,6 +17,19 @@ def get_all() -> list[dict[str, Any]]:
                        """)
         return cursor.fetchall()
 
+def get_produtos_busca(busca: str) -> list[dict[str, Any]]:
+    with Cursor(commit=False, dict_cursor=True) as cursor:
+        cursor.execute("""
+                       SELECT p.id,
+                              p.nome,
+                              t.nome AS tipo,
+                              p.quantidade,
+                              p.preco
+                       FROM produtos p
+                                JOIN tipos t ON p.tipo_id = t.id
+                       WHERE p.nome ILIKE %s;
+        """, (f'%{busca}%',))
+        return cursor.fetchall()
 
 def get_produto(produto_id: int) -> dict[str, Any]:
     with Cursor(commit=False, dict_cursor=True) as cursor:
@@ -33,7 +46,7 @@ def get_produto(produto_id: int) -> dict[str, Any]:
         return cursor.fetchone()
 
 
-def get_tipos() -> list[dict[str, int]]:
+def get_tipos() -> list[dict[str, Any]]:
     with Cursor(commit=False, dict_cursor=True) as cursor:
         cursor.execute("""
                        SELECT id, nome
