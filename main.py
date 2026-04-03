@@ -25,8 +25,12 @@ def get_criar():
 @app.route('/criar', methods=['POST'])
 def post_criar():
     dados = request.form
-    views.post_produto(dados)
-    flash('Produto criado com sucesso!', 'success')
+    try:
+        views.post_produto(dados)
+        flash('Produto criado com sucesso!', 'success')
+    except Exception as e:
+        print(f'Erro ao criar produto: {e}')
+        flash('Erro ao criar produto.', 'error')
     return redirect('/')
 
 
@@ -40,15 +44,23 @@ def get_editar(produto_id):
 @app.route('/editar/<int:produto_id>', methods=['POST'])
 def put_editar(produto_id):
     dados = request.form
-    views.put_produto(produto_id, dados)
-    flash('Produto atualizado com sucesso!', 'success')
+    try:
+        views.put_produto(produto_id, dados)
+        flash('Produto atualizado com sucesso!', 'success')
+    except Exception as e:
+        print(f'Erro ao atualizar produto: {e}')
+        flash('Erro ao atualizar produto.', 'error')
     return redirect('/')
 
 
 @app.route('/deletar/<int:produto_id>', methods=['POST'])
 def delete(produto_id):
-    views.delete_produto(produto_id)
-    flash('Produto deletado com sucesso!', 'success')
+    try:
+        views.delete_produto(produto_id)
+        flash('Produto deletado com sucesso!', 'success')
+    except Exception as e:
+        print(f'Erro ao deletar produto: {e}')
+        flash('Erro ao deletar produto.', 'error')
     return redirect('/')
 
 

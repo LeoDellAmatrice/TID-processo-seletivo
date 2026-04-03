@@ -14,14 +14,14 @@
     </header>
 
     <main class="container">
-        {% with mensagens = get_flashed_messages() %}
-        {% if mensagens %}
-            <div class="mensagens">
-                {% for msg in mensagens %}
-                    <div class="mensagem">{{ msg }}</div>
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% if mensagens %}
+                {% for categoria, msg in mensagens %}
+                    <div class="mensagem {{ categoria }}">
+                        {{ msg }}
+                    </div>
                 {% endfor %}
-            </div>
-        {% endif %}
+            {% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
     </main>
