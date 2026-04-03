@@ -49,6 +49,7 @@ tr:hover {
 
 .btn-acao {
     padding: 5px 10px;
+    border: 1px black solid;
     border-radius: 5px;
     text-decoration: none;
     color: white;

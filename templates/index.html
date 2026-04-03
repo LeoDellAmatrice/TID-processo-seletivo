@@ -37,9 +37,11 @@
                         {{ produto.quantidade }}
                     </td>
                 <td>
-                    <a class="btn-acao btn-editar" href="/editar/{{ produto.id }}">Editar</a>
+                    <form action="/editar/{{ produto.id }}" method="GET" style="display:inline;">
+                        <button class="btn-acao btn-editar">Editar</button>
+                    </form>
                     <form action="/deletar/{{ produto.id }}" method="POST" style="display:inline;">
-                        <button onclick="return confirm('Tem certeza?')">Excluir</button>
+                        <button class="btn-acao btn-excluir" onclick="return confirm('Tem certeza?')">Excluir</button>
                     </form>
                 </td>
                 </tr>

@@ -12,7 +12,8 @@ def get_all() -> list[dict[str, Any]]:
                               p.quantidade,
                               p.preco
                        FROM produtos p
-                                JOIN tipos t ON p.tipo_id = t.id;
+                                JOIN tipos t ON p.tipo_id = t.id
+                       ORDER BY p.id DESC;
                        """)
         return cursor.fetchall()
 
