@@ -13,6 +13,19 @@ body {
     min-height: 100vh;
 }
 
+.mensagens {
+    max-width: 1000px;
+    margin: 1rem auto;
+}
+
+.mensagem {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 .header {
     padding: 1rem;
     text-align: center;
