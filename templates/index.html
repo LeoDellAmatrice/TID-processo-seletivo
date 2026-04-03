@@ -1,0 +1,48 @@
+{%- extends "base.html" -%}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="actions">
+        <label>
+            <input type="text" placeholder="Buscar produto...">
+        </label>
+        <a href="/criar">+ Novo Produto</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>preço</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.id }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.tipo }}</td>
+                    <td>R${{ produto.preco }}</td>
+
+                    {% set estoque_baixo = produto.quantidade <= 5 %}
+                    <td class="{{ 'estoque-baixo' if estoque_baixo else '' }}">
+                        {{ produto.quantidade }}
+                    </td>
+                <td>
+                    <a class="btn-acao btn-editar" href="/editar/{{ produto.id }}">Editar</a>
+                    <a class="btn-acao btn-excluir" href="/deletar/{{ produto.id }}">Excluir</a>
+                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

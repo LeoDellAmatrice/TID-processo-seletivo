@@ -1,0 +1,67 @@
+{%- extends "base.html" -%}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/update.css') }}">
+{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>preço</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>{{ produto.id }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.tipo }}</td>
+                    <td>R${{ produto.preco }}</td>
+
+                    {% set estoque_baixo = produto.quantidade <= 5 %}
+                    <td class="{{ 'estoque-baixo' if estoque_baixo else '' }}">
+                        {{ produto.quantidade }}
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <form action="/editar" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>preço</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" name="nome" value="{{ produto.nome }}" required>
+                        </td>
+                        <td>
+                            <select name="tipo" required>
+                                {% for tipo in dict_tipos %}
+                                    <option value="{{ tipo.id }}" {% if produto.tipo == tipo.nome %}selected{% endif %}>
+                                        {{ tipo.nome }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" name="preco" min="0" step="0.01" value="{{ produto.preco }}" required>
+                        </td>
+                        <td>
+                            <input type="number" name="quantidade" min="0" step="1" value="{{ produto.quantidade }}" required>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <button class="btn-salvar" type="submit">Salvar</button>
+    </form>
+{% endblock %}

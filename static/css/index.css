@@ -1,0 +1,64 @@
+main {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.actions a {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+th, td {
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e0f0ff;
+}
+
+.estoque-baixo {
+    background-color: #ffe5e5;
+}
+
+.btn-acao {
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.btn-editar {
+    background-color: #4e8e4e;
+}
+
+.btn-excluir {
+    background-color: #aa1100;
+}

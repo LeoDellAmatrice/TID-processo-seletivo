@@ -1,0 +1,43 @@
+{%- extends "base.html" -%}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/novo.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <form action="/criar" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>preço</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" name="nome" required>
+                        </td>
+                        <td>
+                            <select name="tipo" required>
+                                <option value="" disabled>Selecione um tipo</option>
+                                {% for tipo in dict_tipos %}
+                                    <option value="{{ tipo.id }}">{{ tipo.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" name="preco" min="0" step="0.01" required>
+                        </td>
+                        <td>
+                            <input type="number" name="quantidade" min="0" step="1" required>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <button class="btn-salvar" type="submit">Adicionar</button>
+    </form>
+{% endblock %}
