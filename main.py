@@ -1,5 +1,3 @@
-from itertools import product
-
 from flask import Flask, render_template, redirect, request
 import database.views as views
 from database.create_tables import create_tables
@@ -9,14 +7,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    pesquisa = request.args.get('pesquisa')
+    pesquisa = request.args.get('pesquisa', '')
 
     if pesquisa:
         produtos = views.get_produtos_busca(pesquisa)
     else:
         produtos = views.get_all()
 
-    return render_template('index.html', produtos=produtos)
+    return render_template('index.html', produtos=produtos, texto_pesquisa=pesquisa)
 
 
 @app.route('/criar', methods=['GET'])
