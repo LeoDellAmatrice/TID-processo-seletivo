@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="actions">
         <form action="/" method="GET">
             <input type="text" name="pesquisa" placeholder="Buscar produto..." value="{{ texto_pesquisa }}">
@@ -31,7 +30,7 @@
                     <td>{{ produto.id }}</td>
                     <td>{{ produto.nome }}</td>
                     <td>{{ produto.tipo }}</td>
-                    <td>R${{ produto.preco }}</td>
+                    <td>R$ {{ '%.2f'|format(produto.preco) }}</td>
 
                     {% set estoque_baixo = produto.quantidade <= 5 %}
                     <td class="{{ 'estoque-baixo' if estoque_baixo else '' }}">

@@ -1,8 +1,8 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, flash
 import database.views as views
 
 app = Flask(__name__)
-
+app.secret_key = 'a3f9c1b8e7d4f6a9b2'
 
 @app.route('/')
 def home():
@@ -26,6 +26,7 @@ def get_criar():
 def post_criar():
     dados = request.form
     views.post_produto(dados)
+    flash('Produto criado com sucesso!', 'success')
     return redirect('/')
 
 
@@ -40,12 +41,14 @@ def get_editar(produto_id):
 def put_editar(produto_id):
     dados = request.form
     views.put_produto(produto_id, dados)
+    flash('Produto atualizado com sucesso!', 'success')
     return redirect('/')
 
 
 @app.route('/deletar/<int:produto_id>', methods=['POST'])
 def delete(produto_id):
     views.delete_produto(produto_id)
+    flash('Produto deletado com sucesso!', 'success')
     return redirect('/')
 
 

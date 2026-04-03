@@ -20,7 +20,7 @@
             <td>{{ produto.id }}</td>
             <td>{{ produto.nome }}</td>
             <td>{{ produto.tipo }}</td>
-            <td>R${{ produto.preco }}</td>
+            <td>R$ {{ '%.2f'|format(produto.preco) }}</td>
 
             {% set estoque_baixo = produto.quantidade <= 5 %}
             <td class="{{ 'estoque-baixo' if estoque_baixo else '' }}">
@@ -35,7 +35,7 @@
             <tr>
                 <th>Nome</th>
                 <th>Tipo</th>
-                <th>preço</th>
+                <th>Preço</th>
                 <th>Quantidade</th>
             </tr>
             </thead>
@@ -45,9 +45,9 @@
                     <input type="text" name="nome" value="{{ produto.nome }}" required>
                 </td>
                 <td>
-                    <select name="tipo" required>
+                    <select name="tipo_id" required>
                         {% for tipo in dict_tipos %}
-                            <option value="{{ tipo.id }}" {% if produto.tipo == tipo.nome %}selected{% endif %}>
+                            <option value="{{ tipo.id }}" {% if produto.tipo_id == tipo.id %}selected{% endif %}>
                                 {{ tipo.nome }}
                             </option>
                         {% endfor %}

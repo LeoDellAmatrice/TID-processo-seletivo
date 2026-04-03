@@ -36,6 +36,7 @@ def get_produto(produto_id: int) -> dict[str, Any]:
         cursor.execute("""
                        SELECT p.id,
                               p.nome,
+                              t.id AS tipo_id,
                               t.nome AS tipo,
                               p.quantidade,
                               p.preco
@@ -74,7 +75,7 @@ def put_produto(produto_id, dados: dict[str, Any]) -> None:
                            quantidade = %s,
                            preco      = %s
                        WHERE id = %s;
-                       """, (dados['nome'], dados['tipo'], dados['quantidade'], dados['preco'], produto_id))
+                       """, (dados['nome'], dados['tipo_id'], dados['quantidade'], dados['preco'], produto_id))
     return None
 
 
