@@ -38,6 +38,11 @@ def post_criar():
 def get_editar(produto_id):
     produto = views.get_produto(produto_id)
     dict_tipos = views.get_tipos()
+
+    if not produto:
+        flash('Produto não encontrado.', 'error')
+        return redirect('/')
+
     return render_template('update.html', produto=produto, dict_tipos=dict_tipos)
 
 
