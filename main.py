@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, request
 import database.views as views
-from database.create_tables import create_tables
 
 app = Flask(__name__)
 
