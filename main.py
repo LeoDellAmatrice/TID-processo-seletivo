@@ -51,5 +51,4 @@ def delete(produto_id):
 
 
 if __name__ == '__main__':
-    create_tables()
     app.run()

@@ -36,11 +36,11 @@ def seeder_table_produtos() -> None:
         if cursor.rowcount > 0:
             return None
         cursor.execute("""
-            INSERT INTO produtos (nome, tipo_id, quantidade, preco, descricao) VALUES
-            ('Rosa Vermelha', 1, 10, 15.50, 'Flor clássica para presentes'),
-            ('Vaso Ceramico Médio', 2, 5, 45.00, 'Vaso resistente para plantas médias'),
-            ('Pá de Jardinagem', 3, 8, 25.90, 'Ferramenta ideal para pequenos plantios'),
-            ('Adubo Orgânico 1kg', 4, 12, 18.75, 'Fertilizante natural para plantas');
+            INSERT INTO produtos (nome, tipo_id, quantidade, preco) VALUES
+            ('Rosa Vermelha', 1, 10, 15.50),
+            ('Vaso Ceramico Médio', 2, 5, 45.00),
+            ('Pá de Jardinagem', 3, 8, 25.90),
+            ('Adubo Orgânico 1kg', 4, 12, 18.75);
         """)
     return None
 
