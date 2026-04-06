@@ -17,9 +17,15 @@
     text-decoration: none;
 }
 
-form {
+.form-busca {
     display: flex;
     gap: 10px;
+}
+
+.form-new {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .div-table {
